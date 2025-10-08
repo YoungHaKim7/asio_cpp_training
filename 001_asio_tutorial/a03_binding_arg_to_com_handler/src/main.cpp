@@ -5,12 +5,12 @@
 void print(const std::error_code&, asio::steady_timer* t, int* count)
 {
     if (*count < 5) {
-        std::print("{}", (*count));
+        std::print("count : {}\n", (*count));
         ++(*count);
+        t->expires_at(t->expiry() + asio::chrono::seconds(1));
+        t->async_wait(std::bind(print,
+            asio::placeholders::error, t, count));
     }
-    t->expires_at(t->expiry() + asio::chrono::seconds(1));
-    t->async_wait(std::bind(print,
-        asio::placeholders::error, t, count));
 }
 
 int main(void)
@@ -21,7 +21,7 @@ int main(void)
     asio::steady_timer t(io, asio::chrono::seconds(1));
     t.async_wait(std::bind(print,
         asio::placeholders::error, &t, &count));
-    std::print("Final count is {}", count);
+    std::print("\nFinal count is {}\n", count);
 
     io.run();
 
