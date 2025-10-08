@@ -22,3 +22,6 @@ sudo cp -r include/asio /usr/local/include/
 ```
 g++ -I/path/to/asio-1.36.0/include your_program.cpp
 ```
+
+# (소개영상 251007)Asio C++ Library - First Impression | Tsoding Daily
+- https://youtu.be/aBYqGD41E9g?si=f-k9JZBxBJOwk6qy
